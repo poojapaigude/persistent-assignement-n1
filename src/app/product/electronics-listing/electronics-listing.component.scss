@@ -1,0 +1,30 @@
+.electronic-listing {
+    background-color: #ffffff;
+    border: 1px solid #e0dfdf;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    table {
+        thead {
+            tr {
+                background: #e6e6ff;
+                .actions {
+                    min-width: 10rem;
+                }
+            }
+        }
+        tbody {
+            tr {
+                td {
+                    border-bottom: 1px solid #e6e6ff;
+                }
+                .actions-buttons {
+                    padding: 0.5rem;
+                    .update {
+                        margin-left: 0.5rem;
+                    }
+                }
+            }
+        }
+    }
+}
