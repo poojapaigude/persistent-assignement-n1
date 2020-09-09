@@ -1,0 +1,64 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "productName": "Dell Inspiron",
+      "description": "Dell Inspiron 3493 14-inch FHD Laptop (10th Gen Ci5-1035G1/8GB/1TB HDD/Win 10 + MS Office/Intel HD Graphics/Silver) E-C560511WIN9",
+      "category": "Laptops"
+    },
+    {
+      "id": 2,
+      "productName": "Apple iPhone 11",
+      "description": "6.1-inch (15.5 cm) Liquid Retina HD LCD display (64GB) - (Product) RED",
+      "category": "Cell Phones"
+    },
+    {
+      "id": 3,
+      "productName": "Sony WH-XB900N",
+      "description": "Sony WH-XB900N Wireless Bluetooth Noise Cancelling Extra Bass Headphones with 30 Hours Battery Life, Touch Control, Quick Attention Mode, Headset with mic for Phone Calls with Alexa – (Black)",
+      "category": "Audio"
+    },
+    {
+      "id": 4,
+      "productName": "Sony Bravia",
+      "description": "Sony Bravia 138.8 cm (55 inches) 4K Ultra HD Certified Android LED TV 55X7500H (Black) (2020 Model)",
+      "category": "TV"
+    },
+    {
+      "id": 5,
+      "productName": "Philips LB110",
+      "description": "Philips LB110 Wi-Fi SmartLight 10W E27 to B22 Base LED Bulb (Dimmable Soft White) Compatible with Android, iOS, Amazon Alexa and Google Assistant",
+      "category": "Samrt Devices"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Laptops"
+    },
+    {
+      "id": 2,
+      "name": "Cell Phones"
+    },
+    {
+      "id": 3,
+      "name": "Audio"
+    },
+    {
+      "id": 4,
+      "name": "TV"
+    },
+    {
+      "id": 5,
+      "name": "Samrt Devices"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "test@user.com",
+      "name": "testuser",
+      "password": "test@123"
+    }
+  ]
+}
