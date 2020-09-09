@@ -10,11 +10,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './store/user-access/app.state';
 import { ProductsEffects } from './store/products/effects/products.effects';
 import { AccessEffects } from './store/user-access/effects/auth.effects';
+import { AddEditProductComponent } from './add-edit-product/add-edit-product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ElectronicsListingComponent
+    ElectronicsListingComponent,
+    AddEditProductComponent
   ],
   imports: [
     BrowserModule,

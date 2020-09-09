@@ -1,16 +1,17 @@
 import { createFeatureSelector } from '@ngrx/store';
 import * as product from '../products/reducers/prodcuts.reducer';
 import * as access from './reducers/auth.reducers';
+import { Products } from 'src/app/shared/models/products';
 
 export interface AppState {
     authState: access.State;
-    quote: product.State;
+    product: Products[];
 }
 
 export const reducers = {
     auth: access.reducer,
-    quote: product.reducer
+    product: product.reducer
 };
 
-export const productsState = createFeatureSelector<AppState>('product');
-export const selectAccessState = createFeatureSelector<AppState>('access');
+export const productState = createFeatureSelector<AppState>('product');
+export const selectAccesState = createFeatureSelector<AppState>('access');

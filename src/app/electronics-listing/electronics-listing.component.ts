@@ -4,6 +4,10 @@ import { map, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Products } from '../shared/models/products';
 import { HTTPPORT, PRODUCTS } from '../shared/shared-constants';
+import { Store } from '@ngrx/store';
+import { AppState, productState } from '../store/user-access/app.state';
+import { Observable } from 'rxjs';
+import { GetProducts } from '../store/products/actions/products.actions';
 
 @Component({
   selector: 'app-electronics-listing',
@@ -13,17 +17,19 @@ import { HTTPPORT, PRODUCTS } from '../shared/shared-constants';
 export class ElectronicsListingComponent implements OnInit {
   prducts: Products[];
   searchString: string = null;
+  getState: Observable<Products[]> = this.store.select(state => state.product);
+
   constructor(private productsService: ProductsService,
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private store: Store<AppState>) {
+  }
 
   ngOnInit(): void {
-    const getAllProductsUrl = encodeURI('products');
-    const url = HTTPPORT + PRODUCTS;
-    this.http
-      .get<Products[]>(url)
-      .subscribe(data => {
-        this.prducts = data;
-        console.log(data);
-      })
+    this.store.dispatch(new GetProducts());
+    this.store.subscribe((data: any) => {
+      console.log(data);
+      this.prducts = data.product.products;
+    });
   }
+
 }

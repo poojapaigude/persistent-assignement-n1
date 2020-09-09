@@ -2,12 +2,12 @@ import { Products } from 'src/app/shared/models/products';
 import { ProductActionNames, GET_PRODUCTS, DATA_LOAD, ADD_PRODUCTS, ADD_PRODUCTS_SUCCESS, DELETE_PRODUCT, DELETE_PRODUCTS_SUCCESS, EditProduct, EditProductSuccess, EDIT_PRODUCTS, EDIT_PRODUCTS_SUCCESS } from '../actions/products.actions';
 
 export interface State {
-  quote: Products[];
+  products: Products[];
   message: string | null;
   successStatus: boolean | null;
 }
 export const initialStateValue: State = {
-  quote: [],
+  products: [],
   message: null,
   successStatus: null
 };
@@ -22,7 +22,7 @@ export function reducer(state: State = initialStateValue, action: ProductActionN
     }
     case DATA_LOAD: {
       return {
-        quote: action.payload,
+        products: action.payload,
         message: null,
         successStatus: null
       };
@@ -34,7 +34,7 @@ export function reducer(state: State = initialStateValue, action: ProductActionN
     }
     case ADD_PRODUCTS_SUCCESS: {
       return {
-        quote: [...state.quote, action.payload],
+        products: [...state.products, action.payload],
         message: 'Your Electronic product with category has been added successfully.',
         successStatus: true
       };
