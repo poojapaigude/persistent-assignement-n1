@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { ProductsService } from 'src/app/services/products.service';
 import { Products } from 'src/app/shared/models/products';
 import { AppState } from 'src/app/store/user-access/app.state';
-import { GetProducts } from 'src/app/store/products/actions/products.actions';
+import { GetProducts, DeleteProduct } from 'src/app/store/products/actions/products.actions';
 import { Router } from '@angular/router';
 
 @Component({
@@ -37,4 +37,17 @@ export class ElectronicsListingComponent implements OnInit {
     this.router.navigate(['/add']);
   }
 
+  deleteProduct(id): void {
+    const confirmation = window.confirm(
+      'Are you sure you want to delete this product?'
+    );
+    if (confirmation) {
+      this.store.dispatch(new DeleteProduct(id));
+      this.store.dispatch(new GetProducts());
+    }
+  }
+
+  editAction(id): void {
+    this.router.navigateByUrl('edit/' + id);
+  }
 }

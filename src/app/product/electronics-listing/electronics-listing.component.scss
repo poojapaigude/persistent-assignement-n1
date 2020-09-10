@@ -8,8 +8,8 @@
         thead {
             tr {
                 background: #e6e6ff;
-                .actions {
-                    min-width: 10rem;
+                .action-col {
+                    min-width: 7rem;
                 }
             }
         }
@@ -20,11 +20,26 @@
                 }
                 .actions-buttons {
                     padding: 0.5rem;
-                    .update {
+                    .button { 
+                        padding: 5px 5px;
+                    }
+                    .edit-button {
                         margin-left: 0.5rem;
                     }
                 }
             }
         }
     }
+    .button {
+        background-color: #1976d2;
+        color: white;
+        padding: 10px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      
+      .button:hover {
+        background-color: #1976d2;
+      }
 }
