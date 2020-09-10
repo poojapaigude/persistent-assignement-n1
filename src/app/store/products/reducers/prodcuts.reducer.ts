@@ -3,13 +3,9 @@ import { ProductActionNames, GET_PRODUCTS, DATA_LOAD, ADD_PRODUCTS, ADD_PRODUCTS
 
 export interface State {
   products: Products[];
-  message: string | null;
-  successStatus: boolean | null;
 }
 export const initialStateValue: State = {
   products: [],
-  message: null,
-  successStatus: null
 };
 
 
@@ -23,8 +19,6 @@ export function reducer(state: State = initialStateValue, action: ProductActionN
     case DATA_LOAD: {
       return {
         products: action.payload,
-        message: null,
-        successStatus: null
       };
     }
     case ADD_PRODUCTS: {
@@ -35,8 +29,6 @@ export function reducer(state: State = initialStateValue, action: ProductActionN
     case ADD_PRODUCTS_SUCCESS: {
       return {
         products: [...state.products, action.payload],
-        message: 'Your Electronic product with category has been added successfully.',
-        successStatus: true
       };
     }
     
@@ -48,8 +40,6 @@ export function reducer(state: State = initialStateValue, action: ProductActionN
     case DELETE_PRODUCTS_SUCCESS: {
       return {
         ...state,
-        message: 'Your Electronic product with category has been deleted successfully.',
-        successStatus: true
       };
     }
     case EDIT_PRODUCTS: {
@@ -60,8 +50,6 @@ export function reducer(state: State = initialStateValue, action: ProductActionN
      case EDIT_PRODUCTS_SUCCESS: {
       return {
         ...state,
-        message: 'Your Electronic product with category has been modified successfully.',
-        successStatus: true
       };
     }
     default: {

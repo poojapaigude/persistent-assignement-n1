@@ -1,6 +1,3 @@
-// import 'rxjs/add/observable/of';
-// import 'rxjs/add/operator/catch';
-// import 'rxjs/add/operator/switchMap';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
@@ -22,12 +19,14 @@ export class AccessEffects {
     private actions: Actions,
     private userAccessService: UserAccessService,
     private router: Router
-  ) {}
+  ) { }
+
   @Effect({ dispatch: false })
   LogInSuccess: Observable<any> = this.actions.pipe(
     ofType(AuthActionTypes.LOGIN_SUCCESS),
     tap((user) => {
       localStorage.setItem('user', JSON.stringify(user.payload));
+      localStorage.setItem('isUserLoggedIn', 'true');
       this.router.navigateByUrl('/');
     })
   );
@@ -36,7 +35,9 @@ export class AccessEffects {
   LogInFailure: Observable<any> = this.actions.pipe(
     ofType(AuthActionTypes.LOGIN_FAILURE),
     tap((err) => {
-      this.userAccessService.errorMessage = err.payload.error;
+      if (localStorage.getItem('isUserLoggedIn') === 'true') {
+        localStorage.removeItem('isUserLoggedIn');
+      }
     })
   );
 
@@ -48,9 +49,18 @@ export class AccessEffects {
       return this.userAccessService.login(payload).pipe(
         map((user) => {
           if (user.length > 0) {
-            return new LogInSuccess({ email: payload.email });
+            let name = null;
+            user.forEach(ele => {
+              if (ele.username === payload.username && ele.name) {
+                name = ele.name;
+              }
+            })
+            return new LogInSuccess({ username: name });
           } else {
-            return new LogInFailure({ error: 'Invalid credentials' });
+            if (localStorage.getItem('isUserLoggedIn') === 'true') {
+              localStorage.removeItem('isUserLoggedIn');
+            }
+            return new LogInFailure({ error: 'Incorrect credentials' });
           }
         })
       );
@@ -61,18 +71,16 @@ export class AccessEffects {
   SignUpSuccess: Observable<any> = this.actions.pipe(
     ofType(AuthActionTypes.SIGNUP_SUCCESS),
     tap((user) => {
-      localStorage.setItem('user', user.payload);
       this.router.navigateByUrl('login');
     })
   );
-  /**
-   * TODO: Combine signupFailure and login failure to create a single effect
-   */
+
   @Effect({ dispatch: false })
   SignUpFailure: Observable<any> = this.actions.pipe(
     ofType(AuthActionTypes.SIGNUP_FAILURE),
-    tap((user) => {})
+    tap((user) => { })
   );
+
   @Effect()
   SignUp: Observable<any> = this.actions.pipe(
     ofType(AuthActionTypes.SIGNUP),
@@ -90,6 +98,9 @@ export class AccessEffects {
   Logout: Observable<any> = this.actions.pipe(
     ofType(AuthActionTypes.LOGOUT),
     tap((user) => {
+      if (localStorage.getItem('isUserLoggedIn') === 'true') {
+        localStorage.removeItem('isUserLoggedIn');
+      }
       localStorage.removeItem('user');
     })
   );

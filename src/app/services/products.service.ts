@@ -25,7 +25,6 @@ export class ProductsService {
       .pipe(catchError(this.errorCatcher));
   }
 
-
   errorCatcher(errorResponse: HttpErrorResponse): Observable<never> {
     if (errorResponse.error instanceof ErrorEvent) {
       console.error('An error occurred:', errorResponse.error.message);

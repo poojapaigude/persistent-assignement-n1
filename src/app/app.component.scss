@@ -56,19 +56,10 @@
     margin: 0 16px;
   }
 
-  .toolbar #twitter-logo {
-    height: 40px;
-    margin: 0 16px;
-  }
-
-  .toolbar #twitter-logo:hover {
-    opacity: 0.8;
-  }
-
   .content {
     // display: flex;
     margin: 86px 0px 0px;
-    padding: 10px 10px;
+    padding: 10px 0px;
     width: 100%;
     flex-direction: column;
     align-items: center;

@@ -1,0 +1,25 @@
+<app-header [displayLoginUser]="displayLoginUser"></app-header>
+<div class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="row">
+            <h2 style="text-align:center">Login</h2>
+            <div class="col login">
+                <input type="text" formControlName="username" placeholder="Username" required>
+                <input type="password" formControlName="password" placeholder="Password" required>
+                <input type="submit" value="Login">
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<div class="bottom-container">
+    <div class="row">
+        <div class="col forget-btn">
+            <a href="#" style="color:white" class="btn">Forgot password?</a>
+        </div>
+        <div class="col">
+            <a [routerLink]="['register']" style="color:white" class="btn">Sign up</a>
+        </div>
+    </div>
+</div>

@@ -18,6 +18,7 @@ export class ElectronicsListingComponent implements OnInit {
   prducts: Products[];
   searchString: string = null;
   getState: Observable<Products[]> = this.store.select(state => state.product);
+  isUserAuthenticated: boolean = false;
 
   constructor(private productsService: ProductsService,
     private http: HttpClient,
@@ -31,6 +32,11 @@ export class ElectronicsListingComponent implements OnInit {
       console.log(data);
       this.prducts = data.product.products;
     });
+    if (localStorage.getItem('isUserLoggedIn') === 'true') {
+      this.isUserAuthenticated = true;
+    } else {
+      // this.router.navigate(['/login']);
+    }
   }
 
   addProduct(): void{

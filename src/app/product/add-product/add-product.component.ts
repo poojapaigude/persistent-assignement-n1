@@ -15,7 +15,11 @@ import { Products } from 'src/app/shared/models/products';
 })
 export class AddProductComponent implements OnInit {
   categories: string[] = ['Laptops', 'Cell Phones', 'Audio', 'TV', 'Samrt Devices'];
-  addProductForm: FormGroup;
+  addProductForm = new FormGroup({
+    productName: new FormControl(),
+    description: new FormControl(),
+    category: new FormControl(),
+  });
   getState: Observable<any> = this.store.select(productState);
   product: { id?: number; productName: string; description: string; category: string; };
   productId: number = null;
@@ -32,7 +36,7 @@ export class AddProductComponent implements OnInit {
       this.productsService.getProduct(this.productId).subscribe((data: Products) => {
         if (data) {
           this.addProductForm = new FormGroup({
-            productName: new FormControl(data.category, Validators.required),
+            productName: new FormControl(data.productName, Validators.required),
             description: new FormControl(data.description),
             category: new FormControl(data.category, Validators.required),
           });
@@ -56,16 +60,22 @@ export class AddProductComponent implements OnInit {
   }
 
   addProduct() {
-    this.product = {
-      productName: this.addProductForm.get('productName').value,
-      description: this.addProductForm.get('description').value,
-      category: this.addProductForm.get('category').value,
-    };
     if (this.productId) {
+      this.product = {
+        productName: this.addProductForm.get('productName').value,
+        description: this.addProductForm.get('description').value,
+        category: this.addProductForm.get('category').value,
+        id: this.productId,
+      };
       this.store.dispatch(new EditProduct(this.product));
       this.store.dispatch(new GetProducts());
       this.router.navigate(['/']);
     } else {
+      this.product = {
+        productName: this.addProductForm.get('productName').value,
+        description: this.addProductForm.get('description').value,
+        category: this.addProductForm.get('category').value,
+      };
       this.store.dispatch(new AddProduct(this.product));
       this.store.dispatch(new GetProducts());
       this.router.navigate(['/']);

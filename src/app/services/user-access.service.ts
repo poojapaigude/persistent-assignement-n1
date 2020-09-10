@@ -26,7 +26,7 @@ export class UserAccessService {
 
   login(user: User): Observable<User[]> {
     const loginUrl = encodeURI(
-      'users?email=' + user.email + '&password=' + user.password
+      'users?email=' + user.username + '&password=' + user.password
     );
     return this.http
       .get<User[]>(this.BASE_URL + loginUrl)

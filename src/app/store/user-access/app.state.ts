@@ -14,4 +14,4 @@ export const reducers = {
 };
 
 export const productState = createFeatureSelector<AppState>('product');
-export const selectAccesState = createFeatureSelector<AppState>('access');
+export const accesState = createFeatureSelector<AppState>('access');

@@ -1,3 +1,4 @@
+<app-header [displayLoginUser]="true"></app-header>
 <div class="electronic-listing">
     <div style="height: 20px;">
         <h4 style="width: 10%; float: left; margin: 0;">Top Categories - </h4>
@@ -7,7 +8,7 @@
 <div class="electronic-listing">
     <div>
         <h4 style="width: 80%; float: left; margin: 0;">Electronic Products</h4>
-        <button class="button" style="float: right;" aria-label="Add new product" (click)="addProduct()">
+        <button *ngIf="isUserAuthenticated" class="button" style="float: right;" aria-label="Add new product" (click)="addProduct()">
             Add Product
         </button>
     </div>
@@ -28,7 +29,7 @@
                 <th>Product</th>
                 <th>Description</th>
                 <th>Electronic Category</th>
-                <th class="action-col">Actions</th>
+                <th *ngIf="isUserAuthenticated" class="action-col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -36,7 +37,7 @@
                 <td tabindex="0">{{ product.productName }}</td>
                 <td tabindex="0">{{ product.description }}</td>
                 <td tabindex="0">{{ product.category }}</td>
-                <td class="actions-buttons" style="text-align: center;">
+                <td *ngIf="isUserAuthenticated" class="actions-buttons" style="text-align: center;">
                     <button tabindex="0" class="button" aria-label="Edit Product"
                         (click)="editAction(product.id)">
                         Edit

@@ -4,19 +4,25 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ElectronicsListingComponent } from './electronics-listing/electronics-listing.component';
+import { ElectronicsListingComponent } from './product/electronics-listing/electronics-listing.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './store/user-access/app.state';
 import { ProductsEffects } from './store/products/effects/products.effects';
 import { AccessEffects } from './store/user-access/effects/auth.effects';
-import { AddEditProductComponent } from './add-edit-product/add-edit-product.component';
+import { AddProductComponent } from './product/add-product/add-product.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { HeaderComponent } from './shared/components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ElectronicsListingComponent,
-    AddEditProductComponent
+    AddProductComponent,
+    LoginComponent,
+    RegisterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
