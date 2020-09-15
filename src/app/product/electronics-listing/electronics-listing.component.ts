@@ -16,8 +16,8 @@ export class ElectronicsListingComponent implements OnInit {
   prducts: Products[];
   searchString: string = null;
   getState: Observable<Products[]> = this.store.select(state => state.product);
-  isUserAuthenticated: boolean = false;
-  nodatamsg: boolean = true;
+  isUserAuthenticated = false;
+  nodatamsg = true;
 
   constructor(
     private store: Store<AppState>,
@@ -41,7 +41,7 @@ export class ElectronicsListingComponent implements OnInit {
     }
   }
 
-  addProduct(): void{
+  addProduct(): void {
     this.router.navigate(['/add']);
   }
 

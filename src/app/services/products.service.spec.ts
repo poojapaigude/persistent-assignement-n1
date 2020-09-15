@@ -4,7 +4,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { ProductsService } from './products.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Products } from '../shared/models/products';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 const data: Products[] = [
   {
     id: 1,
@@ -19,26 +19,6 @@ const data: Products[] = [
     category: 'Cell Phones'
   }
 ];
-
-class MockProductsService {
-  data: Products[] = [
-    {
-      id: 1,
-      productName: 'Dell Inspiron',
-      description: 'Dell Inspiron 3493 14-inch FHD Laptop (10th Gen Ci5-1035G1/8GB/1TB HDD/Win 10 + MS Office/Intel HD Graphics/Silver) E-C560511WIN9',
-      category: 'Laptops'
-    },
-    {
-      id: 2,
-      productName: 'Apple iPhone 11',
-      description: '6.1-inch (15.5 cm) Liquid Retina HD LCD display (64GB) - (Product) RED',
-      category: 'Cell Phones'
-    }
-  ];
-  getAllProducts() {
-    return of(this.data);
-  }
-}
 
 describe('ProductsService', () => {
   let service: ProductsService;
@@ -83,7 +63,7 @@ describe('ProductsService', () => {
       httpMock.verify();
     });
   });
- 
+
   it('editProduct: should create a quote and return the created quote', () => {
     const obj = {
       id: 3,
@@ -107,5 +87,5 @@ describe('ProductsService', () => {
     req.flush(data);
     httpMock.verify();
   });
-  
+
 });

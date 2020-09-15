@@ -39,7 +39,7 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  
+
   it('should login', () => {
     component.login();
     expect(component).toBeDefined();

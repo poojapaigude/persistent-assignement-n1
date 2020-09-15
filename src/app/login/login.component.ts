@@ -15,8 +15,8 @@ export class LoginComponent implements OnInit {
   user: User;
   getState: Observable<any> = this.store.select(accesState);
   errorMessage: string;
-  displayLoginUser: boolean = false;
-  invalid: boolean;
+  displayLoginUser = false;
+  invalid;
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
@@ -33,12 +33,12 @@ export class LoginComponent implements OnInit {
     this.store.dispatch(new LogIn(user));
     this.store.subscribe(data => {
       const d: any = data;
-      if(!d.auth.user) {
+      if (!d.auth.user) {
         this.invalid = true;
       } else {
         this.invalid = false;
       }
-    })
+    });
   }
 
 }

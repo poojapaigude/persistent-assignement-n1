@@ -6,27 +6,22 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../shared/models/User';
 const data: User[] = [
   {
-    "id": 1,
-    "username": "test@user.com",
-    "name": "testuser",
-    "password": "test@123"
+    username: 'test@user.com',
+    name: 'testuser',
+    password: 'test@123'
   },
   {
-    "name": "Pooja",
-    "username": "test@user.com",
-    "password": "test@123",
-    "id": 2
+    name: 'Pooja',
+    username: 'test@user.com',
+    password: 'test@123',
   },
   {
-    "name": "Pooja Paigude",
-    "username": "test123@gmail.com",
-    "password": "test@123",
-    "id": 3
+    name: 'Pooja Paigude',
+    username: 'test123@gmail.com',
+    password: 'test@123',
   }
-]
-class MockUserAccessService {
+];
 
-}
 describe('UserAccessService', () => {
   let service: UserAccessService;
   let httpMock: HttpTestingController;
@@ -66,9 +61,9 @@ describe('UserAccessService', () => {
         username: 'test123@users.com',
         password: 'test@123'
       })
-      .subscribe((user) => {
-        expect(user).toBeDefined();
-        expect(user.length).toBe(2);
+      .subscribe((userdata) => {
+        expect(userdata).toBeDefined();
+        expect(userdata.length).toBe(2);
       });
     const req = httpMock.expectOne(
       'http://localhost:3000/users?username=' +
@@ -86,7 +81,7 @@ describe('UserAccessService', () => {
       password: 'test@1234'
     };
     service.signUp
-    (user)
+      (user)
       .subscribe((users) => {
         expect(users).toBeDefined();
       });

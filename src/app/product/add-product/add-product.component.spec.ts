@@ -8,7 +8,7 @@ import { ProductsService } from 'src/app/services/products.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Products } from 'src/app/shared/models/products';
 import { ActivatedRoute, Router } from '@angular/router';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 class MockProductsService {
   data: Products[] = [
@@ -25,16 +25,14 @@ class MockProductsService {
       category: 'Cell Phones'
     }
   ];
-  getProduct(id) {
+  getProduct(id): Observable<Products> {
     return of(this.data[id]);
   }
 }
 describe('AddProductComponent', () => {
   let component: AddProductComponent;
-  let productsService: ProductsService;
   let fixture: ComponentFixture<AddProductComponent>;
   let router: Router;
-  let route: ActivatedRoute;
   let ele;
 
   beforeEach(() => {
@@ -47,8 +45,8 @@ describe('AddProductComponent', () => {
         FormsModule,
         ReactiveFormsModule,
       ],
-      providers: [provideMockStore(), 
-        { provide: ProductsService, useClass: MockProductsService },
+      providers: [provideMockStore(),
+      { provide: ProductsService, useClass: MockProductsService },
       ]
     }).compileComponents();
   });

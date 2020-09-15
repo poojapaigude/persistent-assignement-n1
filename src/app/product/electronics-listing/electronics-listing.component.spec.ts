@@ -28,7 +28,7 @@ describe('ElectronicsListingComponent', () => {
   });
 
   beforeEach(() => {
-    router = TestBed.inject(Router)
+    router = TestBed.inject(Router);
     fixture = TestBed.createComponent(ElectronicsListingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -39,7 +39,7 @@ describe('ElectronicsListingComponent', () => {
     component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
-  
+
   it('should add', () => {
     fixture = TestBed.createComponent(ElectronicsListingComponent);
     component = fixture.componentInstance;

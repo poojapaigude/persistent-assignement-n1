@@ -1,5 +1,9 @@
 import { Products } from 'src/app/shared/models/products';
-import { ProductActionNames, GET_PRODUCTS, DATA_LOAD, ADD_PRODUCTS, ADD_PRODUCTS_SUCCESS, DELETE_PRODUCT, DELETE_PRODUCTS_SUCCESS, EditProduct, EditProductSuccess, EDIT_PRODUCTS, EDIT_PRODUCTS_SUCCESS } from '../actions/products.actions';
+import {
+  ProductActionNames, GET_PRODUCTS,
+  DATA_LOAD, ADD_PRODUCTS, ADD_PRODUCTS_SUCCESS, DELETE_PRODUCT, DELETE_PRODUCTS_SUCCESS,
+  EDIT_PRODUCTS, EDIT_PRODUCTS_SUCCESS
+} from '../actions/products.actions';
 
 export interface State {
   products: Products[];
@@ -31,7 +35,7 @@ export function reducer(state: State = initialStateValue, action: ProductActionN
         products: [...state.products, action.payload],
       };
     }
-    
+
     case DELETE_PRODUCT: {
       return {
         ...state
@@ -47,7 +51,7 @@ export function reducer(state: State = initialStateValue, action: ProductActionN
         ...state,
       };
     }
-     case EDIT_PRODUCTS_SUCCESS: {
+    case EDIT_PRODUCTS_SUCCESS: {
       return {
         ...state,
       };

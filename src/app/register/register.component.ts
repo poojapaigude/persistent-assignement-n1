@@ -15,10 +15,9 @@ export class RegisterComponent implements OnInit {
 
   user: User;
   getState: Observable<any> = this.store.select(accesState);
-  displayLoginUser: boolean = false;
+  displayLoginUser = false;
   errorMessage: string;
-  @Input()
-  email: string | boolean
+  @Input() email: string;
   registerForm = new FormGroup({
     name: new FormControl('', Validators.required),
     username: new FormControl('', Validators.required),

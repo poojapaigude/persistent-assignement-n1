@@ -9,7 +9,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [RegisterComponent],

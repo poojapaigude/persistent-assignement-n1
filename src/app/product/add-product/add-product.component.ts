@@ -24,7 +24,8 @@ export class AddProductComponent implements OnInit {
   product: { id?: number; productName: string; description: string; category: string; };
   productId: number = null;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private store: Store<AppState>,
     private productsService: ProductsService,
     private route: ActivatedRoute,
@@ -51,15 +52,15 @@ export class AddProductComponent implements OnInit {
     }
   }
 
-  get f() {
+  get productForm(): any {
     return this.addProductForm.controls;
   }
 
-  gotolisting() {
+  gotolisting(): void {
     this.router.navigate(['/']);
   }
 
-  addProduct() {
+  addProduct(): void {
     if (this.productId) {
       this.product = {
         productName: this.addProductForm.get('productName').value,

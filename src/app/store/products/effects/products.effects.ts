@@ -3,12 +3,16 @@ import { ProductsService } from 'src/app/services/products.service';
 import { Actions, Effect, ofType, createEffect } from '@ngrx/effects';
 import { Observable, EMPTY } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { ADD_PRODUCTS, AddProduct, AddProductSuccess, GET_PRODUCTS, GetProducts, DELETE_PRODUCT, DeleteProduct, DeleteProductSuccess, EDIT_PRODUCTS, EditProduct, EDIT_PRODUCTS_SUCCESS, EditProductSuccess, LoadDataSuccess } from '../actions/products.actions';
-import { Action } from 'rxjs/internal/scheduler/Action';
+import {
+    ADD_PRODUCTS, AddProduct, AddProductSuccess, GET_PRODUCTS,
+    GetProducts, DELETE_PRODUCT, DeleteProduct,
+     DeleteProductSuccess, EDIT_PRODUCTS, EditProduct, EditProductSuccess, LoadDataSuccess
+} from '../actions/products.actions';
 
 @Injectable()
 export class ProductsEffects {
-    constructor(private productsService: ProductsService,
+    constructor(
+        private productsService: ProductsService,
         private actions$: Actions) { }
 
     getProduct$ = createEffect(() => this.actions$.pipe(
@@ -16,7 +20,7 @@ export class ProductsEffects {
         map((action: GetProducts) => action),
         mergeMap(() => this.productsService.getAllProducts()
             .pipe(
-                map((products) => { return new LoadDataSuccess(products) }),
+                map((products) => new LoadDataSuccess(products)),
                 catchError(() => EMPTY)
             ))
     )
@@ -27,7 +31,7 @@ export class ProductsEffects {
         map((action: DeleteProduct) => action),
         mergeMap((payload: any) => this.productsService.deleteProduct(payload.payload)
             .pipe(
-                map(() => { return new DeleteProductSuccess() }),
+                map(() => new DeleteProductSuccess()),
                 catchError(() => EMPTY)
             ))
     )
@@ -53,7 +57,7 @@ export class ProductsEffects {
         ofType(ADD_PRODUCTS),
         map((action: AddProduct) => action.payload),
         mergeMap(payload => {
-            return this.productsService.addProducts(payload).pipe( 
-                map((data) => { return new AddProductSuccess(data) }));
+            return this.productsService.addProducts(payload).pipe(
+                map((data) => new AddProductSuccess(data)));
         }));
 }

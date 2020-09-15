@@ -8,9 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HeaderComponent implements OnInit {
   // @Input() isUserAuthenticated: boolean;
   @Input() displayLoginUser?: boolean;
-  isUserAuthenticated: Boolean = false;
+  isUserAuthenticated = false;
   username: string = null;
-  action: string = 'Login';
+  action = 'Login';
   constructor() {}
 
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  clearStorage() {
+  clearStorage(): void {
     if (localStorage.getItem('isUserLoggedIn')) {
       localStorage.removeItem('isUserLoggedIn');
     }
