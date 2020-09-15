@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Products } from 'src/app/shared/models/products';
-import { AppState } from 'src/app/store/user-access/app.state';
-import { GetProducts, DeleteProduct } from 'src/app/store/products/actions/products.actions';
 import { Router } from '@angular/router';
-
+import { Products } from 'src/app/shared/models/products';
+import { AppState } from 'src/app/store/app.state';
+import { GetProducts, DeleteProduct } from 'src/app/store/products/products.actions';
 
 @Component({
   selector: 'app-electronics-listing',
@@ -18,7 +17,8 @@ export class ElectronicsListingComponent implements OnInit {
   getState: Observable<Products[]> = this.store.select(state => state.product);
   isUserAuthenticated = false;
   nodatamsg = true;
-
+  isDarkTheme = false;
+  
   constructor(
     private store: Store<AppState>,
     private router: Router) {
@@ -45,7 +45,7 @@ export class ElectronicsListingComponent implements OnInit {
     this.router.navigate(['/add']);
   }
 
-  deleteProduct(id): void {
+  deleteProduct(id: number): void {
     const confirmation = window.confirm(
       'Are you sure you want to delete this product?'
     );
@@ -57,5 +57,9 @@ export class ElectronicsListingComponent implements OnInit {
 
   editAction(id): void {
     this.router.navigateByUrl('edit/' + id);
+  }
+ 
+  changedTheme(theme): void {
+    this.isDarkTheme = theme;
   }
 }

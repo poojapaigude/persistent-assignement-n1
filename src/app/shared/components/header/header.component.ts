@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HeaderComponent implements OnInit {
   // @Input() isUserAuthenticated: boolean;
   @Input() displayLoginUser?: boolean;
+  @Output() changedTheme: EventEmitter<any> = new EventEmitter();
   isUserAuthenticated = false;
   username: string = null;
   action = 'Login';
+  darkThemeSelected = false;
   constructor() {}
 
   ngOnInit(): void {
@@ -32,6 +34,10 @@ export class HeaderComponent implements OnInit {
     if (localStorage.getItem('user')) {
       localStorage.removeItem('user');
     }
+  }
+
+  changeStatus(isDarkTheme): void {
+    this.changedTheme.emit(isDarkTheme);
   }
 
 }

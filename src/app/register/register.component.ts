@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../shared/models/User';
-import { SignUp } from '../store/user-access/actions/user.actions';
+import { SignUp } from '../store/user-access/user.actions';
 import { Observable } from 'rxjs';
-import { accesState, AppState } from '../store/user-access/app.state';
+import { accesState, AppState } from '../store/app.state';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -17,6 +17,8 @@ export class RegisterComponent implements OnInit {
   getState: Observable<any> = this.store.select(accesState);
   displayLoginUser = false;
   errorMessage: string;
+  isDarkTheme = false;
+
   @Input() email: string;
   registerForm = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -37,5 +39,9 @@ export class RegisterComponent implements OnInit {
       password: this.registerForm.get('password').value
     };
     this.store.dispatch(new SignUp(user));
+  }
+
+  changedTheme(theme): void {
+    this.isDarkTheme = theme;
   }
 }

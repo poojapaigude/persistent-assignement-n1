@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AppState, accesState } from '../store/user-access/app.state';
+import { AppState, accesState } from '../store/app.state';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { LogIn } from '../store/user-access/actions/user.actions';
+import { LogIn } from '../store/user-access/user.actions';
 import { User } from '../shared/models/User';
 
 @Component({
@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   errorMessage: string;
   displayLoginUser = false;
   invalid;
+  isDarkTheme = false;
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
@@ -39,6 +40,10 @@ export class LoginComponent implements OnInit {
         this.invalid = false;
       }
     });
+  }
+
+  changedTheme(theme): void {
+    this.isDarkTheme = theme;
   }
 
 }

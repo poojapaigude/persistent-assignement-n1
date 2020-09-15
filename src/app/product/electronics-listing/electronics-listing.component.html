@@ -1,28 +1,18 @@
-<app-header [displayLoginUser]="true"></app-header>
-<div class="electronic-listing">
+<app-header [displayLoginUser]="true" (changedTheme)='changedTheme($event)'></app-header>
+<div class="electronic-listing" [ngClass]="isDarkTheme ? 'dark-theme' : 'light-theme'">
     <div style="height: 20px;">
         <h4 style="width: 10%; float: left; margin: 0;">Top Categories - </h4>
         <span>Cell Phones | TV | Samrt Devices | Audio | Laptops </span>
     </div>
 </div>
-<div class="electronic-listing">
+<div class="electronic-listing" [ngClass]="isDarkTheme ? 'dark-theme' : 'light-theme'">
     <div>
         <h4 style="width: 80%; float: left; margin: 0;">Electronic Products</h4>
         <button *ngIf="isUserAuthenticated" class="button" style="float: right;" aria-label="Add new product" (click)="addProduct()">
             Add Product
         </button>
     </div>
-    <!-- <form>
-        <div class="form-group">
-            <div class="input-group">
-                <div class="input-group-addon">
-                    <i class="glyphicon glyphicon-search"></i>
-                </div>
-                <input type="text" class="form-control" name="searchString" placeholder="Type to search..."
-                    [(ngModel)]="searchString" />
-            </div>
-        </div>
-    </form> -->
+  
     <table style="margin-top: 42px;" *ngIf="!nodatamsg">
         <thead>
             <tr>

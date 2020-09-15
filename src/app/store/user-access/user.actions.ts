@@ -15,15 +15,15 @@ export class LogIn implements Action {
 }
 export class LogInSuccess implements Action {
     readonly type = AuthActionTypes.LOGIN_SUCCESS;
-    constructor(public payload: any) {}
+    constructor(public payload: any) { }
 }
 export class SignUp implements Action {
     readonly type = AuthActionTypes.SIGNUP;
-    constructor(public payload: User) {}
+    constructor(public payload: User) { }
 }
 export class SignUpSuccess implements Action {
     readonly type = AuthActionTypes.SIGNUP_SUCCESS;
-    constructor(public payload: User) {}
+    constructor(public payload: User) { }
 }
 export class SignUpFailure implements Action {
     readonly type = AuthActionTypes.SIGNUP_FAILURE;
@@ -31,4 +31,9 @@ export class SignUpFailure implements Action {
 export class Logout implements Action {
     readonly type = AuthActionTypes.LOGOUT;
 }
-export type AuthAction = LogIn | LogInSuccess | SignUp | SignUpSuccess | SignUpFailure| Logout;
+export type AuthAction = LogIn
+    | LogInSuccess
+    | SignUp
+    | SignUpSuccess
+    | SignUpFailure
+    | Logout;

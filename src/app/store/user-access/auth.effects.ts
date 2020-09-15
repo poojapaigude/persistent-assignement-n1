@@ -3,14 +3,14 @@ import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
+import { UserAccessService } from 'src/app/services/user-access.service';
 import {
   AuthActionTypes,
   LogIn,
   LogInSuccess,
   SignUp,
   SignUpSuccess,
-} from '../actions/user.actions';
-import { UserAccessService } from 'src/app/services/user-access.service';
+} from './user.actions';
 
 @Injectable()
 export class AccessEffects {

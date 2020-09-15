@@ -1,5 +1,5 @@
-<app-header [displayLoginUser]="displayLoginUser"></app-header>
-<div class="container">
+<app-header [displayLoginUser]="displayLoginUser" (changedTheme)='changedTheme($event)'></app-header>
+<div class="container" [ngClass]="isDarkTheme ? 'dark-theme' : 'light-theme'">
     <form [formGroup]="loginForm" (ngSubmit)="login()">
         <div class="row">
             <h2 style="text-align:center">Login</h2>

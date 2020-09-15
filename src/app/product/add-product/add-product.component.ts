@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AppState, productState } from 'src/app/store/user-access/app.state';
 import { Observable } from 'rxjs';
-import { AddProduct, GetProducts, EditProduct } from 'src/app/store/products/actions/products.actions';
 import { ProductsService } from 'src/app/services/products.service';
 import { Products } from 'src/app/shared/models/products';
+import { AppState, productState } from 'src/app/store/app.state';
+import { EditProduct, GetProducts, AddProduct } from 'src/app/store/products/products.actions';
 
 @Component({
   selector: 'app-add-product',
@@ -23,6 +23,7 @@ export class AddProductComponent implements OnInit {
   getState: Observable<any> = this.store.select(productState);
   product: { id?: number; productName: string; description: string; category: string; };
   productId: number = null;
+  isDarkTheme = false;
 
   constructor(
     private router: Router,
@@ -81,5 +82,9 @@ export class AddProductComponent implements OnInit {
       this.store.dispatch(new GetProducts());
       this.router.navigate(['/']);
     }
+  }
+
+  changedTheme(theme): void {
+    this.isDarkTheme = theme;
   }
 }

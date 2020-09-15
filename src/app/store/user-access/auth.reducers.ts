@@ -1,6 +1,6 @@
 
-import { AuthActionTypes, AuthAction } from '../actions/user.actions';
 import { User } from 'src/app/shared/models/User';
+import { AuthAction, AuthActionTypes } from './user.actions';
 
 export interface State {
   user: User | null;

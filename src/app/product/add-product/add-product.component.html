@@ -1,5 +1,5 @@
-<app-header [displayLoginUser]="true"></app-header>
-<div class="container-header">
+<app-header [displayLoginUser]="true" (changedTheme)='changedTheme($event)'></app-header>
+<div class="container-header" [ngClass]="isDarkTheme ? 'dark-theme' : 'light-theme'">
     <div>
         <h4 style="width: 93%; float: left; margin-top: 10px;">Add Product</h4>
         <button class="button" style="width: 7%; float: right;" aria-label="Go to listing" (click)="gotolisting()">
@@ -7,25 +7,27 @@
         </button>
     </div>
 </div>
-<div class="container">
+<div class="container" [ngClass]="isDarkTheme ? 'dark-theme' : 'light-theme'">
     <form [formGroup]="addProductForm" (ngSubmit)="addProduct()">
         <div class="row">
             <div class="col-20">
-                <label for="productName">Product Name</label>
+                <label for="product-name">Product Name</label>
             </div>
             <div class="col-80">
-                <input type="text" formControlName="productName" placeholder="Enter product name.." required>
-                <div *ngIf="(productForm.productName.dirty || productForm.productName.untouched || productForm.productName.touched) && productForm.productName.invalid" class="alert-danger">
+                <input type="text" id="product-name" formControlName="productName" placeholder="Enter product name.."
+                    required>
+                <div *ngIf="(productForm.productName.dirty || productForm.productName.untouched || productForm.productName.touched) && productForm.productName.invalid"
+                    class="alert-danger">
                     <div *ngIf="productForm.productName.errors.required">Product name is required.</div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-20">
-                <label for="lname">Description</label>
+                <label for="description">Description</label>
             </div>
             <div class="col-80">
-                <textarea id="subject" formControlName="description" placeholder="Write some description.."
+                <textarea id="description" formControlName="description" placeholder="Write some description.."
                     style="height:100px" required></textarea>
             </div>
         </div>
@@ -37,7 +39,7 @@
                 <select formControlName="category" id="category">
                     <option disabled>Select Option</option>
                     <option>Choose Option</option>
-                    <option *ngFor="let cat of categories">{{cat}}</option>
+                    <option *ngFor="let category of categories">{{category}}</option>
                 </select>
             </div>
         </div>

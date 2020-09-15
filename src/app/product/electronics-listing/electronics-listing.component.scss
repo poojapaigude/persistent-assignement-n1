@@ -24,6 +24,7 @@
                         padding: 5px 5px;
                     }
                     .delete-button {
+                        background: #a72f2f;
                         margin-left: 0.5rem;
                     }
                 }
@@ -43,3 +44,4 @@
         background-color: #1976d2;
       }
 }
+@import "../../theme.variable.scss";

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ProductsService } from 'src/app/services/products.service';
 import { Actions, Effect, ofType, createEffect } from '@ngrx/effects';
 import { Observable, EMPTY } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
+import { ProductsService } from 'src/app/services/products.service';
 import {
     ADD_PRODUCTS, AddProduct, AddProductSuccess, GET_PRODUCTS,
     GetProducts, DELETE_PRODUCT, DeleteProduct,
-     DeleteProductSuccess, EDIT_PRODUCTS, EditProduct, EditProductSuccess, LoadDataSuccess
-} from '../actions/products.actions';
+    DeleteProductSuccess, EDIT_PRODUCTS, EditProduct, EditProductSuccess, LoadDataSuccess
+} from './products.actions';
 
 @Injectable()
 export class ProductsEffects {

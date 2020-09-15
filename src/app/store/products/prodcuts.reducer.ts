@@ -3,7 +3,7 @@ import {
   ProductActionNames, GET_PRODUCTS,
   DATA_LOAD, ADD_PRODUCTS, ADD_PRODUCTS_SUCCESS, DELETE_PRODUCT, DELETE_PRODUCTS_SUCCESS,
   EDIT_PRODUCTS, EDIT_PRODUCTS_SUCCESS
-} from '../actions/products.actions';
+} from './products.actions';
 
 export interface State {
   products: Products[];
@@ -11,7 +11,6 @@ export interface State {
 export const initialStateValue: State = {
   products: [],
 };
-
 
 export function reducer(state: State = initialStateValue, action: ProductActionNames): State {
   switch (action.type) {

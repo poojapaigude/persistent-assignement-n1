@@ -1,0 +1,20 @@
+$dark-background-color: #00082d;
+$light-background-color: #fdfdfd;
+$dark-text-color: #333;
+$light-text-color: #c7b9b9;
+
+.dark-theme {
+  background-color: $dark-background-color;
+  color: $light-text-color;
+  table {
+    thead {
+        tr {
+            color: #00082d;
+        }
+    }
+  }
+}
+.light-theme {
+  background-color: $light-background-color;
+  color: $dark-text-color;
+}
