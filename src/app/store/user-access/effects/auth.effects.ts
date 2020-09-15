@@ -6,7 +6,6 @@ import { map, switchMap, tap } from 'rxjs/operators';
 import {
   AuthActionTypes,
   LogIn,
-  LogInFailure,
   LogInSuccess,
   SignUp,
   SignUpSuccess,
@@ -31,16 +30,6 @@ export class AccessEffects {
     })
   );
 
-  @Effect({ dispatch: false })
-  LogInFailure: Observable<any> = this.actions.pipe(
-    ofType(AuthActionTypes.LOGIN_FAILURE),
-    tap((err) => {
-      if (localStorage.getItem('isUserLoggedIn') === 'true') {
-        localStorage.removeItem('isUserLoggedIn');
-      }
-    })
-  );
-
   @Effect()
   LogIn: Observable<any> = this.actions.pipe(
     ofType(AuthActionTypes.LOGIN),
@@ -50,28 +39,18 @@ export class AccessEffects {
         map((user) => {
           if (user.length > 0) {
             let name = null;
-            user.forEach(ele => {
-              if (ele.username === payload.username && ele.name) {
-                name = ele.name;
-              }
-            })
-            return new LogInSuccess({ username: name });
+            const idx = user.findIndex(el => el.username === payload.username);
+            if (idx !== -1) {
+              name = user[idx].name;
+              return new LogInSuccess({ username: name });
+            }
           } else {
             if (localStorage.getItem('isUserLoggedIn') === 'true') {
               localStorage.removeItem('isUserLoggedIn');
             }
-            return new LogInFailure({ error: 'Incorrect credentials' });
           }
         })
       );
-    })
-  );
-
-  @Effect({ dispatch: false })
-  SignUpSuccess: Observable<any> = this.actions.pipe(
-    ofType(AuthActionTypes.SIGNUP_SUCCESS),
-    tap((user) => {
-      this.router.navigateByUrl('login');
     })
   );
 
@@ -91,6 +70,13 @@ export class AccessEffects {
           return new SignUpSuccess(data);
         })
       );
+    })
+  );
+  @Effect({ dispatch: false })
+  SignUpSuccess: Observable<any> = this.actions.pipe(
+    ofType(AuthActionTypes.SIGNUP_SUCCESS),
+    tap((user) => {
+      this.router.navigateByUrl('login');
     })
   );
 

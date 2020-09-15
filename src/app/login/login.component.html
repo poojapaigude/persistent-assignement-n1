@@ -4,22 +4,24 @@
         <div class="row">
             <h2 style="text-align:center">Login</h2>
             <div class="col login">
-                <input type="text" formControlName="username" placeholder="Username" required>
-                <input type="password" formControlName="password" placeholder="Password" required>
-                <input type="submit" value="Login">
+                <input tabindex="4" type="email" formControlName="username" placeholder="Username" required>
+                
+                <input tabindex="5" type="password" formControlName="password" placeholder="Password" required>
+                
+                <label *ngIf="invalid" [ngClass] = "'error'"> Please Enter Valid Email/Password </label>
+                <input tabindex="6" type="submit" value="Login">
             </div>
-
         </div>
     </form>
 </div>
 
 <div class="bottom-container">
     <div class="row">
-        <div class="col forget-btn">
-            <a href="#" style="color:white" class="btn">Forgot password?</a>
+        <div tabindex="7" class="col">
+            <a href="/" style="color:white" class="btn">Cancel</a>
         </div>
-        <div class="col">
-            <a [routerLink]="['register']" style="color:white" class="btn">Sign up</a>
+        <div tabindex="8"  class="col">
+            <a [routerLink]="['/register']" style="color:white" class="btn">Sign up</a>
         </div>
     </div>
 </div>

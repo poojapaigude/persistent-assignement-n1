@@ -4,22 +4,14 @@
         <div class="row">
             <h2 style="text-align:center">Sign Up</h2>
             <div class="col login">
-                <input type="text" formControlName="name" placeholder="Enter Name.." required>
-                <input type="text" formControlName="username" placeholder="Enter Username.." required>
-                <input type="password" formControlName="password" placeholder="Enter Password.." required>
-                <input type="submit" value="Register">
+                <input tabindex="3" type="text" formControlName="name" placeholder="Enter Name.." required>
+                <input tabindex="4" type="email" [email]="true" formControlName="username" placeholder="Enter Username.." required>
+                <input tabindex="5" type="password" formControlName="password" placeholder="Enter Password.." required>
+                <div *ngIf="registerForm.invalid && registerForm.touched && registerForm.dirty" [ngClass]="'error'">
+                    Please Enter Valid Inputs
+                </div>
+                <input tabindex="6" type="submit" value="Register">
             </div>
         </div>
     </form>
-</div>
-
-<div class="bottom-container">
-    <div class="row">
-        <div class="col forget-btn">
-            <a href="#" style="color:white" class="btn">Forgot password?</a>
-        </div>
-        <div class="col">
-            <a [routerLink]="['/register']" style="color:white" class="btn">Sign up</a>
-        </div>
-    </div>
 </div>

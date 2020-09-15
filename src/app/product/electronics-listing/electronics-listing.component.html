@@ -23,7 +23,7 @@
             </div>
         </div>
     </form> -->
-    <table style="margin-top: 42px;">
+    <table style="margin-top: 42px;" *ngIf="!nodatamsg">
         <thead>
             <tr>
                 <th>Product</th>
@@ -42,11 +42,12 @@
                         (click)="editAction(product.id)">
                         Edit
                     </button>
-                    <button tabindex="0" class="button edit-button" aria-label="Delete Product" (click)="deleteProduct(product.id)">
+                    <button tabindex="0" class="button delete-button" aria-label="Delete Product" (click)="deleteProduct(product.id)">
                         Delete
                     </button>
                 </td>
             </tr>
         </tbody>
     </table>
+    <div style="width: 100%; display: inline-block;" *ngIf="nodatamsg">No Data Available</div>
 </div>

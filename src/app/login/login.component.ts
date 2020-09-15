@@ -16,11 +16,12 @@ export class LoginComponent implements OnInit {
   getState: Observable<any> = this.store.select(accesState);
   errorMessage: string;
   displayLoginUser: boolean = false;
-  constructor(private store: Store<AppState>) { }
+  invalid: boolean;
   loginForm = new FormGroup({
-    username: new FormControl(),
-    password: new FormControl(),
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
   });
+  constructor(private store: Store<AppState>) { }
   ngOnInit(): void {
   }
 
@@ -30,6 +31,14 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.get('password').value
     };
     this.store.dispatch(new LogIn(user));
+    this.store.subscribe(data => {
+      const d: any = data;
+      if(!d.auth.user) {
+        this.invalid = true;
+      } else {
+        this.invalid = false;
+      }
+    })
   }
 
 }

@@ -3,19 +3,12 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { User } from '../shared/models/User';
 import { catchError } from 'rxjs/operators';
+import { HTTPPORT } from '../shared/shared-constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserAccessService {
-  readonly BASE_URL = 'http://localhost:3000/';
-  private errorStatusMessage: string;
-  get errorMessage(): string {
-    return this.errorStatusMessage;
-  }
-  set errorMessage(msg: string) {
-    this.errorStatusMessage = msg;
-  }
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -26,17 +19,17 @@ export class UserAccessService {
 
   login(user: User): Observable<User[]> {
     const loginUrl = encodeURI(
-      'users?email=' + user.username + '&password=' + user.password
+      'users?username=' + user.username + '&password=' + user.password
     );
     return this.http
-      .get<User[]>(this.BASE_URL + loginUrl)
+      .get<User[]>(HTTPPORT + loginUrl)
       .pipe(catchError(this.errorCatcher));
   }
 
   signUp(user: User): Observable<User> {
     const signUpUrl = encodeURI('users');
     return this.http
-      .post<User>(this.BASE_URL + signUpUrl, user, this.httpOptions)
+      .post<User>(HTTPPORT + signUpUrl, user, this.httpOptions)
       .pipe(catchError(this.errorCatcher));
   }
 

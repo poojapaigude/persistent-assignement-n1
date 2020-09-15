@@ -35,11 +35,6 @@ export function reducer(state = initialState, action: AuthAction): State {
         },
       };
     }
-    case AuthActionTypes.LOGIN_FAILURE: {
-      return {
-        ...state,
-      };
-    }
     default: {
       return state;
     }

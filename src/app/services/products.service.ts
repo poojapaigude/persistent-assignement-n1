@@ -18,7 +18,7 @@ export class ProductsService {
     }),
   };
 
-  public addProducts(product: Products): Observable<Products> {
+  addProducts(product: Products): Observable<Products> {
     const url = HTTPPORT + PRODUCTS;
     return this.http
       .post<Products>(url, product, this.httpOptions)
@@ -39,28 +39,28 @@ export class ProductsService {
       'Error Occurred; please try again later.');
   }
 
-  public getAllProducts(): Observable<Products[]> {
+  getAllProducts(): Observable<Products[]> {
     const url = HTTPPORT + PRODUCTS;
     return this.http
       .get<Products[]>(url)
       .pipe(catchError(this.errorCatcher));
   }
 
-  public deleteProduct(id: number): Observable<Products> {
+  deleteProduct(id: number): Observable<Products> {
     const url = HTTPPORT + encodeURI(`products/${id}`);
     return this.http
       .delete<Products>(url)
       .pipe(catchError(this.errorCatcher));
   }
 
-  public getProduct(id: number): Observable<Products> {
+  getProduct(id: number): Observable<Products> {
     const url = HTTPPORT + PRODUCTS +  '/' + id;
     return this.http
       .get<Products>(url)
       .pipe(catchError(this.errorCatcher));
   }
 
-  public editProduct(product: Products): Observable<Products> {
+  editProduct(product: Products): Observable<Products> {
     const url = HTTPPORT + encodeURI(`products/${product.id}`);
     return this.http
       .patch<Products>(url, product, this.httpOptions)

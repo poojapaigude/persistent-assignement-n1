@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { map, catchError } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ProductsService } from 'src/app/services/products.service';
 import { Products } from 'src/app/shared/models/products';
 import { AppState } from 'src/app/store/user-access/app.state';
 import { GetProducts, DeleteProduct } from 'src/app/store/products/actions/products.actions';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-electronics-listing',
@@ -19,9 +17,9 @@ export class ElectronicsListingComponent implements OnInit {
   searchString: string = null;
   getState: Observable<Products[]> = this.store.select(state => state.product);
   isUserAuthenticated: boolean = false;
+  nodatamsg: boolean = true;
 
-  constructor(private productsService: ProductsService,
-    private http: HttpClient,
+  constructor(
     private store: Store<AppState>,
     private router: Router) {
   }
@@ -29,13 +27,17 @@ export class ElectronicsListingComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(new GetProducts());
     this.store.subscribe((data: any) => {
-      console.log(data);
       this.prducts = data.product.products;
+      if (this.prducts.length > 0) {
+        this.nodatamsg = false;
+      } else {
+        this.nodatamsg = true;
+      }
     });
     if (localStorage.getItem('isUserLoggedIn') === 'true') {
       this.isUserAuthenticated = true;
     } else {
-      // this.router.navigate(['/login']);
+      this.router.navigate(['/']);
     }
   }
 
