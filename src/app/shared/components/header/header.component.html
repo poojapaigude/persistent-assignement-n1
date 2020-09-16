@@ -13,7 +13,7 @@
       Sign Up
     </a>
     <label class="switch">
-      <input type="checkbox" (change)="changeStatus($event.target.checked)">
+      <input type="checkbox" [checked]="themeChecked" (change)="changeStatus($event.target.checked)">
       <span class="slider"></span>
     </label>
   </div>

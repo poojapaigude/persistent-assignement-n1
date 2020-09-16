@@ -5,6 +5,7 @@ export enum AuthActionTypes {
     SIGNUP = '[AUTH] SignUp',
     LOGOUT = '[AUTH] LogOut',
     LOGIN_SUCCESS = '[Auth] Login Success',
+    LOGIN_FAIL = '[Auth] Login FAIL',
     SIGNUP_SUCCESS = '[Auth] SignUp Success',
     SIGNUP_FAILURE = '[Auth] SignUp Failure'
 }
@@ -15,6 +16,10 @@ export class LogIn implements Action {
 }
 export class LogInSuccess implements Action {
     readonly type = AuthActionTypes.LOGIN_SUCCESS;
+    constructor(public payload: any) { }
+}
+export class LogInFail implements Action {
+    readonly type = AuthActionTypes.LOGIN_FAIL;
     constructor(public payload: any) { }
 }
 export class SignUp implements Action {
@@ -36,4 +41,5 @@ export type AuthAction = LogIn
     | SignUp
     | SignUpSuccess
     | SignUpFailure
+    | LogInFail
     | Logout;

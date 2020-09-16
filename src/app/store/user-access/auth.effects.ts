@@ -7,6 +7,7 @@ import { UserAccessService } from 'src/app/services/user-access.service';
 import {
   AuthActionTypes,
   LogIn,
+  LogInFail,
   LogInSuccess,
   SignUp,
   SignUpSuccess,
@@ -29,6 +30,14 @@ export class AccessEffects {
       this.router.navigateByUrl('/');
     })
   );
+  
+  @Effect({ dispatch: false })
+  LogInFail: Observable<any> = this.actions.pipe(
+    ofType(AuthActionTypes.LOGIN_FAIL),
+    tap((user) => {
+      return;
+    })
+  );
 
   @Effect()
   LogIn: Observable<any> = this.actions.pipe(
@@ -48,6 +57,7 @@ export class AccessEffects {
             if (localStorage.getItem('isUserLoggedIn') === 'true') {
               localStorage.removeItem('isUserLoggedIn');
             }
+            return new LogInFail('Login Fail');
           }
         })
       );

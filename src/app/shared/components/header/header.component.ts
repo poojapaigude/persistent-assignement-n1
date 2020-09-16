@@ -12,10 +12,16 @@ export class HeaderComponent implements OnInit {
   isUserAuthenticated = false;
   username: string = null;
   action = 'Login';
-  darkThemeSelected = false;
-  constructor() {}
+  themeChecked = false;
+  constructor() { }
 
   ngOnInit(): void {
+    if (localStorage.getItem('themeChecked') === 'true') {
+      this.themeChecked = true;
+    } else {
+      this.themeChecked = false;
+    }
+    this.changeStatus(this.themeChecked);
     if (localStorage.getItem('isUserLoggedIn') === 'true') {
       this.isUserAuthenticated = true;
       this.action = 'Logout';
@@ -37,6 +43,7 @@ export class HeaderComponent implements OnInit {
   }
 
   changeStatus(isDarkTheme): void {
+    localStorage.setItem('themeChecked', isDarkTheme);
     this.changedTheme.emit(isDarkTheme);
   }
 
